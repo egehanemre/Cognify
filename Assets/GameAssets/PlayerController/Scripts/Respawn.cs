@@ -1,17 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TarodevController;
 
 public class Respawn : MonoBehaviour
 {
-    public GameObject player;
     public Transform respawnpoint;
-
-    private void OnCollisionEnter2D(Collision2D other)
+    private TrailRenderer trail;
+    private void Awake()
     {
-        if (other.gameObject.CompareTag("Player"))
+        trail = FindObjectOfType<TrailRenderer>();
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
         {
-            player.transform.position = respawnpoint.position;
+            collision.transform.position = respawnpoint.position;
+            trail.time = 0;
+            Invoke(nameof(Resettrial),0.3f);
+            Camera.main.transform.position = respawnpoint.position + Vector3.back*1f;
         }
     }
+
+    private void Resettrial() 
+    {
+        trail.time = 1;
+    }
+
 }
