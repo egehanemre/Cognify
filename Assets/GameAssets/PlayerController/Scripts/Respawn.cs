@@ -17,12 +17,12 @@ public class Respawn : MonoBehaviour
         {
             collision.transform.position = respawnpoint.position;
             trail.time = 0;
-            Invoke(nameof(Resettrial),0.3f);
-            Camera.main.transform.position = respawnpoint.position + Vector3.back*1f;
+            Invoke(nameof(Resettrial), 0.3f);
+            Camera.main.transform.position = respawnpoint.position + Vector3.back * 1f;
         }
     }
 
-    private void Resettrial() 
+    private void Resettrial()
     {
         trail.time = 1;
     }

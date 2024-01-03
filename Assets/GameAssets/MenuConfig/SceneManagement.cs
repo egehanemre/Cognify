@@ -5,13 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagement : MonoBehaviour
 {
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            restartgame();
+        }
+    }
     public void PlayGame()
     {
-        SceneManager.LoadSceneAsync(2);
+        SceneManager.LoadSceneAsync(1);
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void restartgame()
+    {
+        SceneManager.LoadSceneAsync(0);
     }
 }
